@@ -1,0 +1,36 @@
+{
+  "name": "ushell",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ulrich  Winkler <uli.winkler@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "build": "tsc --pretty",
+    "build:watch": "tsc --pretty -w",
+    "clean": "rimraf build coverage \"src/**/*.js?(.map)\"",
+    "lint": "tslint 'src/**/*.ts'",
+    "nodemon": "nodemon --debug --watch build build/ushell.js",
+    "nodemon:test": "nodemon --delay 500ms --watch build --exec \"npm run test\"",
+    "remap": "remap-istanbul -i coverage/istanbul/coverage.json -o coverage/remap -t html",
+    "start": "npm run build&&npm run watch",
+    "pretest": "npm run build",
+    "test": "jasmine&&npm run lint",
+    "watch": "concurrently --kill-others \"npm run build:watch\" \"npm run nodemon\"",
+    "watch:test": "concurrently --kill-others \"npm run build:watch\" \"npm run nodemon:test\""
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.5.40",
+    "@types/node": "^6.0.56",
+    "concurrently": "^3.1.0",
+    "custom-tslint-rules": "^2.1.0",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.2",
+    "nodemon": "^1.11.0",
+    "remap-istanbul": "^0.8.4",
+    "rimraf": "^2.5.4",
+    "tslint": "^4.2.0",
+    "tslint-microsoft-contrib": "^4.0.0",
+    "typescript": "^2.1.4"
+  }
+}
